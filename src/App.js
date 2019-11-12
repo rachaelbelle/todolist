@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ListItems from './ListItems'
 // import { directive } from '@babel/types';
 
 class App extends React.Component {
@@ -13,6 +14,8 @@ class App extends React.Component {
         key:''
       }
     }
+    this.handleInput = this.handleInput.bind(this);
+    this.addItem = this.addItem.bind(this);
   }
   handleInput(e){
     this.setState({
@@ -21,6 +24,21 @@ class App extends React.Component {
         key:Date.now()
       }
     })
+  }
+  addItem(e){
+    e.preventDefault();
+    const newItem = this.state.currentItem;
+    console.log(newItem);
+    if(newItem.text!==""){
+      const items=[...this.state.items, newItem];
+      this.setState({
+        items:items,
+        currentItem:{
+          text:'',
+          key:''
+        }
+      })
+    }
   }
   render() {
     return (
@@ -33,6 +51,7 @@ class App extends React.Component {
             <button type="submit">Add</button>
           </form>
         </header>
+        <ListItems items = {this.state.items}></ListItems>
       </div>
     );
   }
