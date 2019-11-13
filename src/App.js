@@ -1,8 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ListItems from './ListItems'
-// import { directive } from '@babel/types';
+import ListItems from './ListItems';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+
+
+library.add(faTrash);
+
 
 class App extends React.Component {
   constructor(props){
@@ -30,9 +35,9 @@ class App extends React.Component {
     const newItem = this.state.currentItem;
     console.log(newItem);
     if(newItem.text!==""){
-      const items=[...this.state.items, newItem];
+      const newItems=[...this.state.items, newItem];
       this.setState({
-        items:items,
+        items:newItems,
         currentItem:{
           text:'',
           key:''
